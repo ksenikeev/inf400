@@ -5,6 +5,14 @@ public class Player {
     protected int positionX;
     protected int positionY;
 
+    protected static int fieldWidth;
+    protected static int fieldHeight;
+
+    public static void setFieldSize(int width, int height) {
+        fieldWidth = width;
+        fieldHeight = height;
+    }
+
     public void move(){
 
     }
