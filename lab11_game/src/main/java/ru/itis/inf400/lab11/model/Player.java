@@ -13,7 +13,7 @@ public class Player {
         fieldHeight = height;
     }
 
-    public void move(){
+    public void move() {
 
     }
 
@@ -27,6 +27,7 @@ public class Player {
         this.positionY = positionY;
     }
 
+    @Override
     public String toString() {
         return "Name: " + name + ", " + "Position: (" + positionX + ", " + positionY + ")";
     }

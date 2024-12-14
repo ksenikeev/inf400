@@ -96,3 +96,8 @@ target/**
 .DS_Store
 Thumbs.db
 ```
+
+- Вернуть файл из индексируемых
+```
+ git rm --cached  filename
+```
