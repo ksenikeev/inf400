@@ -24,8 +24,8 @@ public class Main {
 */
 
         // Поиск по шаблону
-        String str = "pascal java python java";
-        Pattern pattern = Pattern.compile("j\\D+?a");
+        String str = "морем моря морю море";
+        Pattern pattern = Pattern.compile("[Мм]ор((ям)|(ем)|[еюя])");
         Matcher matcher = pattern.matcher(str);
 
 
