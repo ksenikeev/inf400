@@ -1,4 +1,4 @@
-package ru.itis.inf400.lab17;
+package ru.itis.inf400.lab17.integral;
 
 public abstract class AbstractCalculateIntegral {
     protected double a;
@@ -14,7 +14,7 @@ public abstract class AbstractCalculateIntegral {
         double sum = 0;
         double h = (b - a) / N;
         for(int i = 0; i < N; i++) {
-            sum += h * calculateS(i);
+            sum += calculateS(i);
         }
         return sum;
     }

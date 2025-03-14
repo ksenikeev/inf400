@@ -1,4 +1,4 @@
-package ru.itis.inf400.lab17;
+package ru.itis.inf400.lab17.integral;
 
 public class CalculateIntegralLeft extends AbstractCalculateIntegral {
     public CalculateIntegralLeft(double a, double b, ICalculator function) {
@@ -8,6 +8,6 @@ public class CalculateIntegralLeft extends AbstractCalculateIntegral {
     @Override
     public double calculateS(int i) {
         double h = (b - a) / N;
-        return function.calculate(a + h * i);
+        return h * function.calculate(a + h * i);
     }
 }
