@@ -1,28 +1,28 @@
-package ru.itis.inf400.lab2_01;
+package ru.itis.inf400.lab2_02.gen;
 
-public class ArrayListImpl implements List400 {
-    private Integer[] values;
+public class ArrayListImpl<T> implements List400<T> {
+    private Object[] values;
     private int size;
 
     public ArrayListImpl() {
         size = 0;
-        values = new Integer[10];
+        values = new Object[10];
     }
 
-    public Integer get(int position) throws IndexOutOfBoundsException{
+    public T get(int position) throws IndexOutOfBoundsException{
         if (position < 0 || position >= size)
             throw new IndexOutOfBoundsException();
-        return values[position];
+        return (T)values[position];
     }
 
-    public void add(Integer element) {
+    public void add(T element) {
         extendValuesArray();
         values[size++] = element;
     };
 
     private void extendValuesArray(){
         if (size == values.length + 1){
-            Integer[] temp = new Integer[(int)(values.length*1.5)];
+            Object[] temp = new Object[(int)(values.length*1.5)];
 
 /*
             for (int i = 0; i < values.length; i++){
@@ -36,7 +36,7 @@ public class ArrayListImpl implements List400 {
         }
     }
 
-    public void add(Integer element, int position) throws IndexOutOfBoundsException {
+    public void add(T element, int position) throws IndexOutOfBoundsException {
         if (position < 0 || position > size)
             throw new IndexOutOfBoundsException();
         extendValuesArray();
@@ -47,10 +47,10 @@ public class ArrayListImpl implements List400 {
         size++;
     }
 
-    public Integer remove(int position) {
+    public T remove(int position) {
         if (position < 0 || position >= size)
             throw new IndexOutOfBoundsException();
-        Integer temp = values[position];
+        T temp = (T)values[position];
         for (int i = position; i < size-1; i++) {
             values[i] = values[i + 1];
         }
@@ -61,6 +61,15 @@ public class ArrayListImpl implements List400 {
     public int size() {
         return size;
     };
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < size; ++i) {
+            result.append(values[i]).append(" ");
+        }
+        return result.toString();
+    }
 
     public void sort(boolean asc) {
 

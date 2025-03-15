@@ -3,14 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ru.itis</groupId>
+        <artifactId>inf400</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
-    <groupId>ru.itis</groupId>
-    <artifactId>inf400</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>lab2_02_object_list</module>
-    </modules>
+    <artifactId>lab2_02_object_list</artifactId>
 
     <properties>
         <maven.compiler.source>19</maven.compiler.source>
