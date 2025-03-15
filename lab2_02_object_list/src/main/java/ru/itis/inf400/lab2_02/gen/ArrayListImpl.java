@@ -9,12 +9,14 @@ public class ArrayListImpl<T> implements List400<T> {
         values = new Object[10];
     }
 
+    @Override
     public T get(int position) throws IndexOutOfBoundsException{
         if (position < 0 || position >= size)
             throw new IndexOutOfBoundsException();
         return (T)values[position];
     }
 
+    @Override
     public void add(T element) {
         extendValuesArray();
         values[size++] = element;
@@ -36,6 +38,7 @@ public class ArrayListImpl<T> implements List400<T> {
         }
     }
 
+    @Override
     public void add(T element, int position) throws IndexOutOfBoundsException {
         if (position < 0 || position > size)
             throw new IndexOutOfBoundsException();
@@ -47,6 +50,7 @@ public class ArrayListImpl<T> implements List400<T> {
         size++;
     }
 
+    @Override
     public T remove(int position) {
         if (position < 0 || position >= size)
             throw new IndexOutOfBoundsException();
@@ -58,6 +62,7 @@ public class ArrayListImpl<T> implements List400<T> {
         return temp;
     };
 
+    @Override
     public int size() {
         return size;
     };
