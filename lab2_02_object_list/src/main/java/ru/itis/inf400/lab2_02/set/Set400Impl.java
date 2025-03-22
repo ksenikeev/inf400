@@ -1,5 +1,8 @@
 package ru.itis.inf400.lab2_02.set;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Set400Impl<T> implements Set400<T> {
     private T[] array;
     private int size;
@@ -49,8 +52,19 @@ public class Set400Impl<T> implements Set400<T> {
     }
 
     @Override
-    public T[] getAll() {
-        return array;
+    public T[] getAll(T[] a) {
+        //T[] copy = (T[])Arrays.copyOf(array, size, a.getClass());//
+
+        T[] copy = (T[])Array.newInstance(a.getClass().componentType(), size);
+
+        for (int i = 0; i < size; ++i) {
+            copy[i] = (T)array[i];
+        }
+
+        System.out.println(array.getClass());
+        System.out.println(copy.getClass());
+
+        return copy;
     }
 
     @Override

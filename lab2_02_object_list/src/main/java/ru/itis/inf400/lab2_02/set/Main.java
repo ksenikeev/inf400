@@ -9,13 +9,10 @@ public class Main {
         set.add(new Car("GT", Color.BLACK, 2021));
         set.add(new PoliceCar("Zafira", Color.WHITE, 2012));
 
-        System.out.println(set);
+        Car[] cars = set.getAll(new Car[0]);
 
-        System.out.println(new Car("X5", Color.BLACK, 2020).hashCode());
-        System.out.println(new Car("X5", Color.BLACK, 2020).hashCode());
-
-        Car car1 = new Car("X5", Color.BLACK, 2020);
-        Car car2 = new Car("X5", Color.BLACK, 2020);
-        System.out.println(car1 == car2);
+        for(Car car : cars) {
+            System.out.println(car);
+        }
     }
 }

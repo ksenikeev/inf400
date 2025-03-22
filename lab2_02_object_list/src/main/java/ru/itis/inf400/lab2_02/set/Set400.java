@@ -8,7 +8,7 @@ public interface Set400<T> {
 
     void add(T element);
 
-    T[] getAll();
+    T[] getAll(T[] a);
 
     T remove(T element);
 }
