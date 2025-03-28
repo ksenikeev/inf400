@@ -1,6 +1,8 @@
 package ru.itis.inf400.lab2_03;
 
-public class ArrayListImpl<T> implements List400<T> {
+import java.util.Comparator;
+
+public class ArrayListImpl<T extends Comparable<T>> implements List400<T> {
     private Object[] values;
     private int size;
 
@@ -76,7 +78,14 @@ public class ArrayListImpl<T> implements List400<T> {
         return result.toString();
     }
 
-    public void sort(boolean asc) {
+    public void sort(Comparator<T> comparator, boolean asc) {
+        T t1 = null;
+        T t2 = null;
 
+        if (comparator != null) {
+            comparator.compare(t1, t2);
+        } else {
+            t1.compareTo(t2);
+        }
     }
 }

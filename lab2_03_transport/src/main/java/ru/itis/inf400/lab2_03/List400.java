@@ -1,6 +1,8 @@
 package ru.itis.inf400.lab2_03;
 
-public interface List400<T> {
+import java.util.Comparator;
+
+public interface List400<T extends Comparable> {
 
     T get(int position);
 
@@ -12,5 +14,5 @@ public interface List400<T> {
 
     int size();
 
-    //void sort(boolean asc);
+    void sort(Comparator<T> comparator, boolean asc);
 }
