@@ -23,7 +23,7 @@ public class ArrayListImpl<T> implements List400<T> {
     };
 
     private void extendValuesArray(){
-        if (size == values.length + 1){
+        if (size == values.length){
             Object[] temp = new Object[(int)(values.length*1.5)];
 
 /*
@@ -71,7 +71,7 @@ public class ArrayListImpl<T> implements List400<T> {
     public String toString() {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < size; ++i) {
-            result.append(values[i]).append(" ");
+            result.append(values[i]).append("\n");
         }
         return result.toString();
     }
