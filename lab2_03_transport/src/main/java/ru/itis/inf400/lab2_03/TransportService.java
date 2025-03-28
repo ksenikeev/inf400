@@ -25,4 +25,56 @@ public class TransportService {
         }
         return result;
     }
+
+    public List400<Bus> loadBus(String fileName) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(fileName));
+        if (scanner.hasNextLine()){
+            scanner.nextLine();
+        }
+        List400<Bus> result = new ArrayListImpl<>();
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            String[] lineSet = line.split(";");
+            if (lineSet[0].equals("bus")) {
+                Bus transport = new Bus(lineSet[1], lineSet[2], lineSet[3], lineSet[4]);
+                result.add(transport);
+            }
+        }
+        return result;
+    }
+
+    public List400<Tram> loadTram(String fileName) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(fileName));
+        if (scanner.hasNextLine()){
+            scanner.nextLine();
+        }
+        List400<Tram> result = new ArrayListImpl<>();
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            String[] lineSet = line.split(";");
+            if (lineSet[0].equals("tram")) {
+                Tram transport = new Tram(lineSet[1], lineSet[2], lineSet[3], lineSet[4]);
+                result.add(transport);
+            }
+        }
+        return result;
+    }
+
+    public List400<Trolleybus> loadTrolleyBus(String fileName) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(fileName));
+        if (scanner.hasNextLine()){
+            scanner.nextLine();
+        }
+        List400<Trolleybus> result = new ArrayListImpl<>();
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            String[] lineSet = line.split(";");
+            if (lineSet[0].equals("trolleybus")) {
+                Trolleybus transport = new Trolleybus(lineSet[1], lineSet[2], lineSet[3], lineSet[4]);
+                result.add(transport);
+            }
+        }
+        return result;
+    }
+
 }
