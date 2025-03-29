@@ -6,16 +6,21 @@ public class MapImpl<K, V> implements Map400<K, V> {
 
     @Override
     public void put(K key, V value) {
-        // ищем индекс массива по которому формируем связанный список
-        int index = key.hashCode() % 16;
-        if (hashArray[index] == null) {
-            hashArray[index] = new Node<>(new EntryImpl<K, V>(key, value));
-        } else {
-            Node node = new Node(new EntryImpl<K, V>(key, value));
+        int index = Math.abs(key.hashCode()) % 16;
+        Node<K, V> currentNode = hashArray[index];
 
-            node.next = hashArray[index];
-            hashArray[index] = node;
+        while(currentNode != null) {
+            if (currentNode.value.getKey().equals(key)) {
+                currentNode.value.setValue(value);
+                return;
+            }
         }
+
+        Node<K, V> node = new Node<>(new EntryImpl<>(key, value));
+        node.next = hashArray[index];
+        hashArray[index] = node;
+
+        size++;
     }
 
     @Override
@@ -29,6 +34,7 @@ public class MapImpl<K, V> implements Map400<K, V> {
         while (current != null) {
             EntryImpl<K,V> currentValue = current.value;
             if (currentValue.key.equals(key)) {
+
                 return currentValue.value;
             }
             current = current.next;
@@ -39,12 +45,47 @@ public class MapImpl<K, V> implements Map400<K, V> {
 
     @Override
     public Set400<K> keySet() {
+
+        return null;
+    }
+
+    @Override
+    public V remove(K key) {
+        int index = key.hashCode() % 16;
+        Node<K, V> current = hashArray[index];
+
+        if (current == null) {return null;}
+        if (current.value.key.equals(key)) {
+            hashArray[index] = current.next;
+            return current.value.value;
+        }
+
+        // Идем по связному списку, начиная с головы, которая хранится в ячейке
+        // hashArray[index]
+        // ищем пару в которой ключ равен аргументу метода
+        while (current.next != null) {
+            EntryImpl<K,V> currentValue = current.next.value;
+            if (currentValue.key.equals(key)) {
+                V res = currentValue.value;
+                current.next = current.next.next;
+                return res;
+            }
+            current = current.next;
+        }
         return null;
     }
 
     @Override
     public List400<V> values() {
-        return null;
+        List400<V> result = new ArrayListImpl<>();
+        for(int i = 0; i < hashArray.length; ++i) {
+            Node<K, V> current = hashArray[i];
+            while (current != null) {
+                result.add(current.value.getValue());
+                current = current.next;
+            }
+        }
+        return result;
     }
 
     @Override
@@ -65,11 +106,6 @@ public class MapImpl<K, V> implements Map400<K, V> {
     @Override
     public boolean containsValue(V value) {
         return false;
-    }
-
-    @Override
-    public V remove(K key) {
-        return null;
     }
 
     @Override

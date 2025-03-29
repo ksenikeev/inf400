@@ -7,7 +7,7 @@ public class Main {
         map.put(1,"один");
         map.put(1,"один 1");
         map.put(1,"один 2");
-
+        System.out.println(map.remove(1));
         System.out.println(map.get(1));
     }
 }
