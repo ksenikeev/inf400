@@ -2,6 +2,7 @@ package ru.itis.inf400.lab2_04;
 
 public class MapImpl<K, V> implements Map400<K, V> {
     private Node<K, V>[] hashArray = new Node[16];
+    private int size;
 
     @Override
     public void put(K key, V value) {
@@ -12,13 +13,27 @@ public class MapImpl<K, V> implements Map400<K, V> {
         } else {
             Node node = new Node(new EntryImpl<K, V>(key, value));
 
-            node.next = hashArray[index].next;
-            hashArray[index].next = node;
+            node.next = hashArray[index];
+            hashArray[index] = node;
         }
     }
 
     @Override
     public V get(K key) {
+        // По хешу ключа находим индекс (index) в массиве, где начинается связный список
+        int index = key.hashCode() % 16;
+        Node<K, V> current = hashArray[index];
+        // Идем по связному списку, начиная с головы, которая хранится в ячейке
+        // hashArray[index]
+        // ищем пару в которой ключ равен аргументу метода
+        while (current != null) {
+            EntryImpl<K,V> currentValue = current.value;
+            if (currentValue.key.equals(key)) {
+                return currentValue.value;
+            }
+            current = current.next;
+        }
+
         return null;
     }
 
@@ -100,6 +115,5 @@ public class MapImpl<K, V> implements Map400<K, V> {
             this.value = value;
         }
     }
-
-
 }
+
