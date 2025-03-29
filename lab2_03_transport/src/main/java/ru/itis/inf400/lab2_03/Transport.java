@@ -1,6 +1,6 @@
 package ru.itis.inf400.lab2_03;
 
-public abstract class Transport implements Comparable<Transport> {
+public abstract class Transport {
     protected String number;
     protected String routeNumber;
     protected String workTimeBegin;
@@ -13,11 +13,6 @@ public abstract class Transport implements Comparable<Transport> {
         this.routeNumber = routeNumber;
         this.workTimeBegin = workTimeBegin;
         this.workTimeEnd = workTimeEnd;
-    }
-
-    @Override
-    public int compareTo(Transport t) {
-        return this.number.compareTo(t.number);
     }
 
     public String getNumber() {

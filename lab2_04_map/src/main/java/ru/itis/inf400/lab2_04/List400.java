@@ -1,4 +1,4 @@
-package ru.itis.inf400.lab2_03;
+package ru.itis.inf400.lab2_04;
 
 import java.util.Comparator;
 
