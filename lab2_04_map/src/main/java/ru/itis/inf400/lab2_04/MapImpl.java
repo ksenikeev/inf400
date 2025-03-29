@@ -6,7 +6,7 @@ public class MapImpl<K, V> implements Map400<K, V> {
 
     @Override
     public void put(K key, V value) {
-        int index = Math.abs(key.hashCode()) % 16;
+        int index = Math.abs(key.hashCode() % 16);
         Node<K, V> currentNode = hashArray[index];
 
         while(currentNode != null) {
@@ -26,7 +26,7 @@ public class MapImpl<K, V> implements Map400<K, V> {
     @Override
     public V get(K key) {
         // По хешу ключа находим индекс (index) в массиве, где начинается связный список
-        int index = key.hashCode() % 16;
+        int index = Math.abs(key.hashCode() % 16);
         Node<K, V> current = hashArray[index];
         // Идем по связному списку, начиная с головы, которая хранится в ячейке
         // hashArray[index]
@@ -51,12 +51,13 @@ public class MapImpl<K, V> implements Map400<K, V> {
 
     @Override
     public V remove(K key) {
-        int index = key.hashCode() % 16;
+        int index = Math.abs(key.hashCode() % 16);
         Node<K, V> current = hashArray[index];
 
         if (current == null) {return null;}
         if (current.value.key.equals(key)) {
             hashArray[index] = current.next;
+            size--;
             return current.value.value;
         }
 
@@ -68,6 +69,7 @@ public class MapImpl<K, V> implements Map400<K, V> {
             if (currentValue.key.equals(key)) {
                 V res = currentValue.value;
                 current.next = current.next.next;
+                size--;
                 return res;
             }
             current = current.next;
@@ -90,7 +92,7 @@ public class MapImpl<K, V> implements Map400<K, V> {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
