@@ -1,6 +1,6 @@
-package ru.itis.inf400.lab2_04;
+package ru.itis.inf400.lab2_05.iterablemap;
 
-public interface Map400<K, V> extends Iterable<Map400.Entry<K,V>>{
+public interface Map400<K, V> extends Iterable<Map400.Entry<K, V>> {
     void put(K key, V value);
 
     V get(K key);
