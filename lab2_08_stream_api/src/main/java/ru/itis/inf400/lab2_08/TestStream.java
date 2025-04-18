@@ -115,25 +115,14 @@ public class TestStream {
                 "Что липы тщетно манят нас,\n" +
                 "В сугробы ноги погружая.");
 
-/*
-        list.stream().map(s -> s.replaceAll("\n", " "))
-                .forEach(System.out::println);
+        /*
+            1. Отсортировать по длине стихотворения (в символах)
+            2. Отсортировать по длине стихотворения (в строках)
+            3. Преобразовать в структуру List<List<String>>
+            4. Преобразовать все к верхнему регистру
+            5. Преобразовать список стихов, записав каждое в одну строку
+            6. Вывести список из первой строки каждого стиха ... , количество строк
 
-        List<String> result = list.stream()
-                .map(s -> s.replaceAll("\n", " ")).toList();
-
-        result.forEach(System.out::println);
-*/
-
-        list.stream().filter(s -> s.toLowerCase().contains("голова"))
-                .map(s -> s.replaceAll("\n", " "))
-                .forEach(System.out::println);
-
-
-        System.out.println(list.stream().mapToInt(s -> s.length()).sorted()
-                .average().getAsDouble());
-
-        //Optional
-
+         */
     }
 }
