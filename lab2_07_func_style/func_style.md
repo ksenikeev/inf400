@@ -22,7 +22,7 @@ public interface Predicate<T> {
     //...
 }
 ```
-- Функция a -> f(a)
+- Функция a -> f(a:T):R
 ```java
 @FunctionalInterface
 public interface Function<T, R> {
