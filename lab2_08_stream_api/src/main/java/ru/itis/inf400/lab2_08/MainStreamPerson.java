@@ -28,6 +28,26 @@ public class MainStreamPerson {
 
         names.stream().forEach(System.out::println);
 
+        long size = persons
+                .stream()
+                .count();
+        System.out.println(size);
+
+        List<Person> pNamePersons = persons
+                .stream()
+                .filter(s -> s.getName().charAt(0) == 'П')
+                .toList();
+        System.out.println(pNamePersons);
+
+        List<Integer> lenNames = persons
+                .stream()
+                .map(s -> s.getName().length())
+                .distinct()
+                .toList();
+        System.out.println(lenNames);
+        persons.stream()
+                .sorted((p1,p2) -> p1.getName().compareTo(p2.getName()))
+                .toList().forEach(System.out::println);
     }
 
     private static void initPersonList(List<Person> persons) {
