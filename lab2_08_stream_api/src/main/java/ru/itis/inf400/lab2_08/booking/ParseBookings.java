@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class ParseBookings {
 
-    public Bookings parse() throws IOException {
+    public static Bookings parse() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         Bookings bookings = mapper
                 .readValue(new File("bookings.json"), Bookings.class);
