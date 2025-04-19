@@ -26,6 +26,10 @@ SimpleDateFormat("format").parse(date_as_string)
 
 SimpleDateFormat("format").format(date)
 
+```java
+Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2022-10-30");
+```
+
 Параметры форматирования:
 
 - y	Year	Year	1996; 96
