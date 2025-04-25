@@ -1,6 +1,7 @@
 package ru.itis.inf400.lab2_08.booking;
 
 import java.util.Date;
+import java.util.Objects;
 
 /*
 "person": {
@@ -36,5 +37,24 @@ public class Person {
 
     public void setFromcity(String fromcity) {
         this.fromcity = fromcity;
+    }
+
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (!this.getClass().equals(o.getClass())) {
+            return false;
+        }
+        if (this.gender.equals(((Person) o).gender)
+        && this.birthdate.equals(((Person) o).birthdate)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gender, birthdate);
     }
 }

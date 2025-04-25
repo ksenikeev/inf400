@@ -16,6 +16,7 @@ public class Main {
         printCountGuestsInHotel(bookings);
         printCountGuestsInCities(bookings);
 
+
     }
     // посчитать кол-во мужчин забронировавших гостиницу
     public static void countMen(Bookings bookings) {
@@ -77,5 +78,13 @@ public class Main {
                 .forEach(s -> System.out.println(s.getKey() + " " + s.getValue()));
     }
 
+    public static void printCountGuestsInCities2(Bookings bookings) {
+   /*     Map<String, List<Booking>> mp = bookings
+                .getBookings()
+                .stream()
+                // преобразуем в MAP для этого нам надо сказать, что будет ключем, что значением
+                .collect(Collectors.groupingBy(booking -> ((Booking)booking).getPerson().getFromcity()))
+                .entrySet().stream().map(e -> new Entry);
+*/    }
 }
 
