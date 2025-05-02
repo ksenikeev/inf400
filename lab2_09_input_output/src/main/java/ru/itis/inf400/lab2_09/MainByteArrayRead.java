@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class Main {
+public class MainByteArrayRead {
     public static void main(String[] args) {
 
         byte[] bytes = {1, 2, 3, 4, 5, 6, 7};
