@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class ClientProtocol {
 
@@ -21,17 +22,26 @@ public class ClientProtocol {
 
             OutputStream outputStream = clientSocket.getOutputStream();
 //            // Отправляем на сервер информацию
-//            outputStream.write(2);
-
             DataOutputStream dos = new DataOutputStream(outputStream);
 
-            dos.writeInt(size);
-            dos.write(message.getBytes());
+            while (true) {
+                Scanner scanner = new Scanner(System.in);
+                // Берем со сканера текст
+                // Вычисляем размер в байтах
+                // Отправляем размер
+                // Отправляем текст как массив байт
 
-            InputStream inputStream = clientSocket.getInputStream();
-            // читаем ответ сервера
-            int r = inputStream.read();
-            System.out.println("ответ сервера " + r);
+                dos.writeInt(size);
+                dos.write(message.getBytes());
+
+                InputStream inputStream = clientSocket.getInputStream();
+                // читаем ответ сервера
+                // сначала размер сообщения
+                // готовим буфер нужного размера
+                // считываем в буфер все сообщение
+                // выводим на консоль
+                if (message.equals("end")) break;
+            }
             clientSocket.close();
         } catch (UnknownHostException e) {
             e.printStackTrace();
