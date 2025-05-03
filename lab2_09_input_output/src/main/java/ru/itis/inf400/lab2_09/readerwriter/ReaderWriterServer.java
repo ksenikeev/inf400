@@ -15,6 +15,7 @@ public class ReaderWriterServer {
             // ожидаем подключения клиента
             // Объект соединения с клиентом
             Socket clientSocket = server.accept();
+            System.out.println("Клиент подключился");
             // Берем InputStream, ассоциированный с клиентом
             InputStream inputStream = clientSocket.getInputStream();
             InputStreamReader isr = new InputStreamReader(inputStream);
@@ -25,8 +26,6 @@ public class ReaderWriterServer {
             BufferedWriter bw = new BufferedWriter(osw);
             while (true)
             {
-                //System.out.println("запрос клиента " + size);
-
                 String inputMessage = br.readLine();
                 System.out.println(inputMessage);
 
@@ -38,8 +37,8 @@ public class ReaderWriterServer {
                 // Отправляем текст как массив байт
                 String outputMessage = scanner.nextLine();
                 bw.write(outputMessage + "\n");
+                bw.flush();
                 if (outputMessage.equals("stop")) break;
-
             }
 
             clientSocket.close();
