@@ -14,6 +14,7 @@ public class ReaderWriterServer {
             System.out.println("start server");
             // ожидаем подключения клиента
             // Объект соединения с клиентом
+
             Socket clientSocket = server.accept();
             System.out.println("Клиент подключился");
             // Берем InputStream, ассоциированный с клиентом
