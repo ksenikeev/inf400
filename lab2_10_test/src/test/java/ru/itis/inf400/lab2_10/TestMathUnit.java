@@ -2,9 +2,7 @@ package ru.itis.inf400.lab2_10;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.NoSuchElementException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestMathUnit {
@@ -14,6 +12,7 @@ public class TestMathUnit {
     void testSum() {
         // "Эталон"
         int expected = 5;
+
 
         //  Вычисленное значение
         int actual = MathUnit.sum(2,3);
@@ -52,11 +51,13 @@ public class TestMathUnit {
     @Test
     void testSort() {
 
+        MathUnit mathUnit = new MathUnit();
+
         // массив из одинаковых элементов
         // массив из повторяющихся элементов
         // массив из элементов в обратном порядке
 
         assertArrayEquals(new int[] {1,2,3,4,5,6,7,8},
-                MathUnit.sort(new int[] {1,2,3,4,5,6,7,8}));
+                mathUnit.sort(new int[] {1,2,3,4,5,6,7,8}));
     }
 }
