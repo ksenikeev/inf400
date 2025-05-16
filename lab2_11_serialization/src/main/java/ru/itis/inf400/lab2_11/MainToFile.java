@@ -5,13 +5,14 @@ import ru.itis.inf400.lab2_11.model.Hotel;
 import ru.itis.inf400.lab2_11.model.Person;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Main {
+public class MainToFile {
     public static void main(String[] args) throws ParseException {
         Booking booking = new Booking();
         booking.setId(1);
@@ -34,16 +35,11 @@ public class Main {
 
         System.out.println(booking);
 
-        try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(bos)) {
+        try (FileOutputStream fos = new FileOutputStream("booking.obj");
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(booking);
             oos.flush();
-            for (byte b: bos.toByteArray()) {
-                System.out.print(b);
-            }
-            System.out.println();
-            System.out.println(bos);
-        } catch (IOException e) {
+         } catch (IOException e) {
             e.printStackTrace();
         }
     }
