@@ -40,4 +40,14 @@ public class DBUtils {
             IndexUtils.index.add(idx);
         }
     }
+
+    public static void readBook(int id) {
+        File file = new File(IndexUtils.DB_PATH + "book.tbl");
+        try (RandomAccessFile raf = new RandomAccessFile(file, "rw")) {
+            raf.seek(5); // Go to byte at offset position 5.
+            raf.read(); // Write byte 70 (overwrites original byte at this offset).
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
