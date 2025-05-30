@@ -62,4 +62,8 @@ public class PlayList {
         return songs.stream().filter(p -> p.getNumber() == number)
                 .findFirst();
     }
+
+    public int size() {
+        return songs.size();
+    }
 }
