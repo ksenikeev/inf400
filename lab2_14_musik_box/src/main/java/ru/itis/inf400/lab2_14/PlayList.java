@@ -31,13 +31,29 @@ public class PlayList {
     }
 
     public void add(Song song) {
+        song.setNumber(songs.size() + 1);
         songs.add(song);
+
     }
 
     public void showPlaylist() {
         for (int i = 0; i < songs.size(); i++) {
-            System.out.println(i + 1 + " " + songs.get(i).getAuthor() + " "
+            System.out.println(songs.get(i).getNumber() + " " + songs.get(i).getAuthor() + " "
             + songs.get(i).getName());
         }
+    }
+
+    public void findByAuthor(String author){
+        songs.stream().filter(p -> p.getAuthor().toUpperCase().contains(author.toUpperCase()))
+                .forEach(p -> System.out.println(p.getNumber() + " " + p.getAuthor() + " "
+                        + p.getName()));
+
+    }
+
+    public void findByName(String name){
+        songs.stream().filter(p -> p.getName().toUpperCase().contains(name.toUpperCase()))
+                .forEach(p -> System.out.println(p.getNumber() + " " + p.getAuthor() + " "
+                        + p.getName()));
+
     }
 }

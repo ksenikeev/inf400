@@ -6,7 +6,7 @@ public class Song implements Serializable {
     private String name;
     private String author;
     private String path;
-
+    private int number;
     public Song() {
     }
 
@@ -14,6 +14,14 @@ public class Song implements Serializable {
         this.name = name;
         this.author = author;
         this.path = path;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public String getName() {
