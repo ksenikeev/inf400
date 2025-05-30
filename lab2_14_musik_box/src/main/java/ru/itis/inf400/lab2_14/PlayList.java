@@ -3,6 +3,7 @@ package ru.itis.inf400.lab2_14;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class PlayList {
     private static final String FILE_NAME = "playlist";
@@ -55,5 +56,10 @@ public class PlayList {
                 .forEach(p -> System.out.println(p.getNumber() + " " + p.getAuthor() + " "
                         + p.getName()));
 
+    }
+
+    public Optional<Song> findByNumber(int number) {
+        return songs.stream().filter(p -> p.getNumber() == number)
+                .findFirst();
     }
 }
