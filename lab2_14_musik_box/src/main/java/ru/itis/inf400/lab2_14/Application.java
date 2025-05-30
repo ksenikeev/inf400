@@ -9,17 +9,20 @@ import java.util.Scanner;
 
 public class Application {
     private Status status = Status.NOTPLAYED;
-    private final String[] commandsPlayed = {"1. stop", "2. next",
-            "3. prev", "4. showAll", "5. exit", "6. add"};
-    private final String[] commandsNOTPlayed = {"1. showAll", "2. findByName",
-            "3. findByAuthor", "4. play", "5. exit", "6. add"};
+
+    private final String[] commandsPlayed = {"1. stop", "2. next", "3. prev", "4. showAll", "5. exit", "6. add"};
+
+    private final String[] commandsNOTPlayed = {"1. showAll", "2. findByName", "3. findByAuthor", "4. play", "5. exit", "6. add"};
+
     private PlayList playList;
+
     private Scanner scan = new Scanner(System.in);
+
     private Song currentSong;
+
     private Clip clip;
 
     public void start() {
-
 
         playList = new PlayList();
         playList.load();
@@ -36,8 +39,6 @@ public class Application {
             System.out.print("Введите команду: ");
             String command = scan.nextLine();
             exitFlag = commandHandler(command);
-
-
         }
     }
 
@@ -53,23 +54,19 @@ public class Application {
 
     public boolean commandHandler(String command) {
         switch (command) {
-            case "6": {
+            case "6":
                 addSong();
                 playList.save();
                 break;
-            }
-            case "5": {
-                return false;
-            }
-            case "4": {
+            case "5": return false;
+            case "4":
                 if (status == Status.PLAYED) {
                     playList.showPlaylist();
                 } else {
                     playSong(null);
                 }
                 break;
-            }
-            case "3": {
+            case "3":
                 if (status == Status.NOTPLAYED) {
                     findByAuthor();
                 } else {
@@ -79,8 +76,7 @@ public class Application {
                     playSong(findPrevSong());
                 }
                 break;
-            }
-            case "2": {
+            case "2":
                 if (status == Status.NOTPLAYED) {
                     findByName();
                 } else {
@@ -90,8 +86,7 @@ public class Application {
                     playSong(findNextSong());
                 }
                 break;
-            }
-            case "1": {
+            case "1":
                 if (status == Status.NOTPLAYED) {
                     playList.showPlaylist();
                 } else {
@@ -101,7 +96,6 @@ public class Application {
                     status = Status.NOTPLAYED;
                 }
                 break;
-            }
         }
 
         return true;
@@ -131,10 +125,8 @@ public class Application {
             status = Status.PLAYED;
             System.out.println("Проигрывается: " + currentSong.getName());
         }
-
-
-
     }
+
     public void addSong() {
         Song song = new Song();
         System.out.println("Введите название песни");
@@ -167,6 +159,4 @@ public class Application {
         if (currentSong.getNumber() == 1) return playList.size();
         return currentSong.getNumber() - 1;
     }
-
-
 }
