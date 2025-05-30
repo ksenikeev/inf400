@@ -55,14 +55,28 @@ public class Application {
         switch (command) {
             case "6": {
                 addSong();
+                playList.save();
                 break;
             }
-            case "5": return false;
+            case "5": {
+                return false;
+            }
             case "4": {
                 if (status == Status.PLAYED) {
                     playList.showPlaylist();
                 } else {
                     playSong();
+                }
+                break;
+            }
+            case "1": {
+                if (status == Status.NOTPLAYED) {
+                    playList.showPlaylist();
+                } else {
+                    if(clip != null && clip.isRunning()) {
+                        clip.stop();
+                    }
+                    status = Status.NOTPLAYED;
                 }
                 break;
             }
