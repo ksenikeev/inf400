@@ -11,6 +11,7 @@ public class WavPlayer {
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
             clip.start();
+            //clip.stop();
             Thread.sleep(clip.getMicrosecondLength() / 1000); // Ждём окончания
         } catch (Exception e) {
             e.printStackTrace();
