@@ -4,10 +4,14 @@ import java.util.function.Consumer;
 
 public class Integral implements Consumer<Double>{
 
-    private Double result = 0d;
+    private volatile double result = 0d;
 
     public static void main(String[] args) throws InterruptedException {
+
         new Integral().startCalculate();
+
+
+        new Integral().partSumm(1,2);
     }
 
     public void startCalculate() throws InterruptedException {
@@ -30,7 +34,9 @@ public class Integral implements Consumer<Double>{
     }
 
     public void accept(Double part) {
-        result += part;
+        synchronized (this) {
+            result += part;
+        }
     }
 
     public double func(double x) {
