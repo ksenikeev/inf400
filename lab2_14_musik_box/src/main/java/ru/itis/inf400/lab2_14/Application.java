@@ -1,13 +1,8 @@
 package ru.itis.inf400.lab2_14;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import java.io.File;
-import java.util.Optional;
 import java.util.Scanner;
 
-public class Application {
+public class Application implements IApplication {
     private Status status = Status.NOTPLAYED;
 
     private final String[] commandsPlayed = {"1. stop", "2. next", "3. prev", "4. showAll", "5. exit", "6. add"};
@@ -20,12 +15,30 @@ public class Application {
 
     private Song currentSong;
 
-    private Clip clip;
+    private PlayUtils playUtils;
+
+    public PlayList getPlayList() {
+        return playList;
+    }
+
+    public Song getCurrentSong() {
+        return currentSong;
+    }
+
+    public void setCurrentSong(Song currentSong) {
+        this.currentSong = currentSong;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
     public void start() {
 
         playList = new PlayList();
         playList.load();
+
+        playUtils = new PlayUtils(this);
 
         boolean exitFlag = true;
 
@@ -63,36 +76,30 @@ public class Application {
                 if (status == Status.PLAYED) {
                     playList.showPlaylist();
                 } else {
-                    playSong(null);
+                    playUtils.playSong(null);
                 }
                 break;
             case "3":
                 if (status == Status.NOTPLAYED) {
                     findByAuthor();
                 } else {
-                    if(clip != null && clip.isRunning()) {
-                        clip.stop();
-                    }
-                    playSong(findPrevSong());
+                    playUtils.stop();
+                    playUtils.playSong(findPrevSong());
                 }
                 break;
             case "2":
                 if (status == Status.NOTPLAYED) {
                     findByName();
                 } else {
-                    if(clip != null && clip.isRunning()) {
-                        clip.stop();
-                    }
-                    playSong(findNextSong());
+                    playUtils.stop();
+                    playUtils.playSong(findNextSong());
                 }
                 break;
             case "1":
                 if (status == Status.NOTPLAYED) {
                     playList.showPlaylist();
                 } else {
-                    if(clip != null && clip.isRunning()) {
-                        clip.stop();
-                    }
+                    playUtils.stop();
                     status = Status.NOTPLAYED;
                 }
                 break;
@@ -101,31 +108,6 @@ public class Application {
         return true;
     }
 
-    public void playSong(Integer trackNumber) {
-        if (trackNumber == null) {
-            System.out.println("Введите номер трека:");
-            trackNumber = scan.nextInt();
-        }
-        Optional<Song> song = playList.findByNumber(trackNumber);
-        if(song.isPresent()) {
-            currentSong = song.get();
-            new Thread(() ->{
-                try {
-                    AudioInputStream audioStream =
-                            AudioSystem.getAudioInputStream(new File(currentSong.getPath()));
-                    clip = AudioSystem.getClip();
-                    clip.open(audioStream);
-                    clip.start();
-                    //clip.stop();
-                    //Thread.sleep(clip.getMicrosecondLength() / 1000); // Ждём окончания
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }).start();
-            status = Status.PLAYED;
-            System.out.println("Проигрывается: " + currentSong.getName());
-        }
-    }
 
     public void addSong() {
         Song song = new Song();
