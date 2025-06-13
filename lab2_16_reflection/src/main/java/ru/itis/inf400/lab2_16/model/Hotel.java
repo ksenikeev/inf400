@@ -3,7 +3,7 @@ package ru.itis.inf400.lab2_16.model;
 public class Hotel {
     public static final String version = "1.0";
 
-    private String name;
+    protected String name;
     private Integer stars;
     private String address;
 
@@ -14,6 +14,18 @@ public class Hotel {
         this.name = name;
         this.stars = stars;
         this.address = address;
+    }
+
+    private static String getVersion() {
+        return version;
+    }
+
+    protected static String getVersion2() {
+        return version;
+    }
+
+    static String getVersion3() {
+        return version;
     }
 
     public String getName() {
@@ -38,5 +50,14 @@ public class Hotel {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "name='" + name + '\'' +
+                ", stars=" + stars +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
